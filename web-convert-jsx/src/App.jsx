@@ -14,7 +14,7 @@ const App = () => {
       <Header />
       <ListingProduct/>
       <Footer/>
-      <Welcome username={123}/>
+      {/* <Welcome username={123}/> */}
     </>
   );
 };
