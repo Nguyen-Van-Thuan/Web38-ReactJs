@@ -44,7 +44,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item border-top mt-auto pt-2">
-            <Link className="nav-link" to="#">
+            <Link className="nav-link" to="/">
               <i className="bi-box-arrow-left me-2" />
               Logout
             </Link>

@@ -1,0 +1,1 @@
+export const URL_PRODUCT_LIST = `https://qcshp3-8080.csb.app/products`;

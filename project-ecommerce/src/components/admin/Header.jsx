@@ -228,7 +228,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className="border-top mt-3 pt-2 mx-4">
-                  <Link className="dropdown-item ms-0 me-0" to="#">
+                  <Link className="dropdown-item ms-0 me-0" to="/">
                     <i className="bi-box-arrow-left me-2" />
                     Logout
                   </Link>

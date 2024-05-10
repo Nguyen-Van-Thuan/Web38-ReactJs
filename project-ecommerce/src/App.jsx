@@ -7,21 +7,25 @@ import NotFound from "./pages/admin/NotFound";
 import Profile from "./pages/admin/Profile";
 import Setting from "./pages/admin/Setting";
 import Help from "./pages/admin/Help";
+import ClientHome from "./pages/client/ClientHome";
+import ClientLayout from "./pages/client/ClientLayout";
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<ClientLayout />}>
+          <Route index element={<ClientHome />} />
+        </Route>
+
         <Route path="/dashboad" element={<Layout />}>
-
           <Route index element={<Home />} />
-          <Route path="/dashboad/wallet" element={<Wallet/>}/>
-          <Route path="/dashboad/profile" element={<Profile/>} />
-          <Route path="/dashboad/setting" element={<Setting/>}/>
-          <Route path="/dashboad/help" element={<Help/>}/>
+          <Route path="/dashboad/wallet" element={<Wallet />} />
+          <Route path="/dashboad/profile" element={<Profile />} />
+          <Route path="/dashboad/setting" element={<Setting />} />
+          <Route path="/dashboad/help" element={<Help />} />
 
-          <Route path="*" element={<NotFound/>}/>
-
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
