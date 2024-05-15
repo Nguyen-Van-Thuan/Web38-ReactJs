@@ -3,24 +3,13 @@ import { useEffect } from "react";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
 
 const ClientHome = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Call api
-  useEffect(() => {
-    const getApi = async () => {
-      const response = await axios.get(URL_PRODUCT_LIST);
-      // console.log(response);
-      setData(response.data);
-      setIsLoading(false);
-    };
-    getApi();
-  }, [URL_PRODUCT_LIST]);
+  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
 
   if (isLoading) return <h1>Data loading...</h1>;
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -44,55 +33,51 @@ const ClientHome = () => {
               data.map((value) => {
                 // console.log(value);
                 return (
-                  <>
-                    <Link key={value.id} to={`/product/${value.id}`}>
-                      <div className="col mb-5">
-                        <div className="card h-100">
-                          {/* Sale badge*/}
-                          <div
-                            className="badge bg-dark text-white position-absolute"
-                            style={{ top: "0.5rem", right: "0.5rem" }}
-                          >
-                            Sale
-                          </div>
-                          {/* Product image*/}
-                          <img
-                            className="card-img-top"
-                            src={value.image}
-                            alt="..."
-                          />
-                          {/* Product details*/}
-                          <div className="card-body p-4">
-                            <div className="text-center">
-                              {/* Product name*/}
-                              <h5 className="fw-bolder">{value.title}</h5>
-                              {/* Product reviews*/}
-                              <div className="d-flex justify-content-center small text-warning mb-2">
-                                <div className="bi-star-fill" />
-                                <div className="bi-star-fill" />
-                                <div className="bi-star-fill" />
-                                <div className="bi-star-fill" />
-                                <div className="bi-star-fill" />
-                              </div>
-                              {/* Product price*/}
-                              {value.price}
+                  <div className="col mb-5" key={value.id}>
+                    <div className="card h-100">
+                      <Link to={`/product/${value.id}`}>
+                        {/* Sale badge*/}
+                        <div
+                          className="badge bg-dark text-white position-absolute"
+                          style={{ top: "0.5rem", right: "0.5rem" }}
+                        >
+                          Sale
+                        </div>
+                        {/* Product image*/}
+                        <img
+                          className="card-img-top"
+                          src={value.image}
+                          alt="..."
+                        />
+                        {/* Product details*/}
+                        <div className="card-body p-4">
+                          <div className="text-center">
+                            {/* Product name*/}
+                            <h5 className="fw-bolder">{value.title}</h5>
+                            {/* Product reviews*/}
+                            <div className="d-flex justify-content-center small text-warning mb-2">
+                              <div className="bi-star-fill" />
+                              <div className="bi-star-fill" />
+                              <div className="bi-star-fill" />
+                              <div className="bi-star-fill" />
+                              <div className="bi-star-fill" />
                             </div>
-                          </div>
-                          {/* Product actions*/}
-                          <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div className="text-center">
-                              <a
-                                className="btn btn-outline-dark mt-auto"
-                                href="#"
-                              >
-                                Add to cart
-                              </a>
-                            </div>
+                            {/* Product price*/}
+                            {value.price}
                           </div>
                         </div>
+                      </Link>
+
+                      {/* Product actions*/}
+                      <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div className="text-center">
+                          <a className="btn btn-outline-dark mt-auto" href="#">
+                            Add to cart
+                          </a>
+                        </div>
                       </div>
-                    </Link>
-                  </>
+                    </div>
+                  </div>
                 );
               })}
           </div>
