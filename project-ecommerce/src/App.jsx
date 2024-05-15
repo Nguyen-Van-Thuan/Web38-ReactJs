@@ -17,10 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<ClientLayout />}>
           <Route index element={<ClientHome />} />
-
-          {/* Router Dynamic */}
           <Route path="/product/:id" element={<ClientDetailProduct />} />
-          
           <Route path="*" element={<NotFound />} />
         </Route>
 

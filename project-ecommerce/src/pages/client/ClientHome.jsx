@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ClientHome = () => {
   const [data, setData] = useState([]);
@@ -44,9 +45,9 @@ const ClientHome = () => {
               data.map((value, index) => {
                 // console.log(value);
                 return (
-                  <>
-                    <div className="col mb-5">
-                      <div className="card h-100">
+                  <div className="col mb-5" key={value.id} >
+                    <div className="card h-100">
+                      <Link to={`/product/${value.id}`}>
                         {/* Product image*/}
                         <img
                           className="card-img-top"
@@ -62,20 +63,18 @@ const ClientHome = () => {
                             {value.price} Vnd
                           </div>
                         </div>
-                        {/* Product actions*/}
-                        <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                          <div className="text-center">
-                            <a
-                              className="btn btn-outline-dark mt-auto"
-                              href="#"
-                            >
-                              View options
-                            </a>
-                          </div>
+                      </Link>
+
+                      {/* Product actions*/}
+                      <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div className="text-center">
+                          <a className="btn btn-outline-dark mt-auto" href="#">
+                            Them gio hang
+                          </a>
                         </div>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
           </div>
@@ -86,3 +85,13 @@ const ClientHome = () => {
 };
 
 export default ClientHome;
+
+// HTML khong cho phep the a long the a
+/*
+  <a>
+    <a></a>
+  </a>
+
+  => Loi
+
+*/
