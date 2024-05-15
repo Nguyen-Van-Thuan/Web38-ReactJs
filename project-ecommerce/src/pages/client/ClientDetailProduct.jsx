@@ -6,11 +6,14 @@ import useAxios from "../../hooks/useAxios";
 const ClientDetailProduct = () => {
   // get id page detail
   let productId = useParams();
-
-  // call api detail
   const urlDetail = URL_PRODUCT_LIST + `/${productId.id}`;
   const { data, isLoading } = useAxios(urlDetail);
+
+
   if (isLoading) return <h1>Data loading...</h1>;
+  // call api detail
+
+  console.log(productId);
 
   return (
     <>
