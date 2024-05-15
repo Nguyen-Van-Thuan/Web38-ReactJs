@@ -9,7 +9,6 @@ import Setting from "./pages/admin/Setting";
 import Help from "./pages/admin/Help";
 import ClientHome from "./pages/client/ClientHome";
 import ClientLayout from "./pages/client/ClientLayout";
-import ClientDetailProduct from "./pages/client/ClientDetailProduct";
 
 const App = () => {
   return (
@@ -17,10 +16,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<ClientLayout />}>
           <Route index element={<ClientHome />} />
-          <Route path="/product/:id" element={<ClientDetailProduct/>}/>
-
-          <Route path="*" element={<NotFound />} />
-
         </Route>
 
         <Route path="/dashboad" element={<Layout />}>
