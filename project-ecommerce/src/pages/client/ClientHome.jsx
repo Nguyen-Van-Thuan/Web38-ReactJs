@@ -3,23 +3,28 @@ import { useEffect } from "react";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
 
 const ClientHome = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [data, setData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  // Call api
-  useEffect(() => {
-    const getApi = async () => {
-      const response = await axios.get(URL_PRODUCT_LIST);
-      // console.log(response);
-      setData(response.data);
+  // // Call api
+  // useEffect(() => {
+  //   const getApi = async () => {
+  //     const response = await axios.get(URL_PRODUCT_LIST);
+  //     // console.log(response);
+  //     setData(response.data);
 
-      // goi du lieu xong doi isLoading -> fasle
-      setIsLoading(false);
-    };
-    getApi();
-  }, [URL_PRODUCT_LIST]);
+  //     // goi du lieu xong doi isLoading -> fasle
+  //     setIsLoading(false);
+  //   };
+  //   getApi();
+  // }, [URL_PRODUCT_LIST]);
+
+
+  // Opmail + su dung custom hook useAciox() -> call api
+  const {data, isLoading} = useAxios(URL_PRODUCT_LIST);
 
   if (isLoading == true) return <h1>Dang lay du lieu ...</h1>;
 

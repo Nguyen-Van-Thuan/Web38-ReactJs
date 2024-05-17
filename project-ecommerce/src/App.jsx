@@ -10,6 +10,8 @@ import Help from "./pages/admin/Help";
 import ClientHome from "./pages/client/ClientHome";
 import ClientLayout from "./pages/client/ClientLayout";
 import ClientDetailProduct from "./pages/client/ClientDetailProduct";
+import Login from "./pages/auth/Login";
+import ProtectedLogin from "./pages/auth/ProtectedLogin";
 
 const App = () => {
   return (
@@ -21,7 +23,12 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
 
-        <Route path="/dashboad" element={<Layout />}>
+        <Route path="/login" element={<Login />} />
+
+        <Route
+          path="/dashboad"
+          element={<ProtectedLogin element={<Layout />} />}
+        >
           <Route index element={<Home />} />
           <Route path="/dashboad/wallet" element={<Wallet />} />
           <Route path="/dashboad/profile" element={<Profile />} />
@@ -36,3 +43,7 @@ const App = () => {
 };
 
 export default App;
+
+
+// ProtectedLogin -> lop tuong thanh -> bao ve dashboad
+// element={<Layout />} => props cua component ProtectedLogin, no dc san trong react
