@@ -1,5 +1,8 @@
 import React from "react";
 
+// Import các hình ảnh
+import user from "../../assets/images/profile/senior-man-white-sweater-eyeglasses.jpg";
+
 const Setting = () => {
   return (
     <>
@@ -84,7 +87,7 @@ const Setting = () => {
                   />
                   <div className="input-group mb-1">
                     <img
-                      src="images/profile/senior-man-white-sweater-eyeglasses.jpg"
+                      src={user}
                       className="profile-image img-fluid"
                       alt=""
                     />
