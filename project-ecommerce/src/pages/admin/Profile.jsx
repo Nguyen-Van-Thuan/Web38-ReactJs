@@ -1,5 +1,8 @@
 import React from "react";
 
+// Import các hình ảnh
+import profile from "../../assets/images/medium-shot-happy-man-smiling.jpg";
+
 const Profile = () => {
   return (
     <>
@@ -16,7 +19,7 @@ const Profile = () => {
               <div className="col-lg-3 col-12 mb-4 mb-lg-0">
                 <div className="custom-block-profile-image-wrap">
                   <img
-                    src="images/medium-shot-happy-man-smiling.jpg"
+                    src={profile}
                     className="custom-block-profile-image img-fluid"
                     alt=""
                   />
