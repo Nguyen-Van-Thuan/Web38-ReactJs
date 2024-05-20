@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// social
-import google from "../../assets/images/social/search.png"
+// Import các hình ảnh
+import google from "../../assets/images/social/search.png";
+import spotify from "../../assets/images/social/spotify.png";
+import telegram from "../../assets/images/social/telegram.png";
+import snapchat from "../../assets/images/social/snapchat.png";
+import tiktok from "../../assets/images/social/tiktok.png";
+import youtube from "../../assets/images/social/youtube.png";
+import profileImage from "../../assets/images/medium-shot-happy-man-smiling.jpg";
 
 const Header = () => {
   return (
@@ -122,7 +128,7 @@ const Header = () => {
                         <img
                           src={google}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Google"
                         />
                         <span className="d-block">Google</span>
                       </Link>
@@ -130,9 +136,9 @@ const Header = () => {
                     <div className="col-lg-4 col-md-4 col-4">
                       <Link className="dropdown-item text-center" to="#">
                         <img
-                          src="images/social/spotify.png"
+                          src={spotify}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Spotify"
                         />
                         <span className="d-block">Spotify</span>
                       </Link>
@@ -140,9 +146,9 @@ const Header = () => {
                     <div className="col-lg-4 col-md-4 col-4">
                       <Link className="dropdown-item text-center" to="#">
                         <img
-                          src="images/social/telegram.png"
+                          src={telegram}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Telegram"
                         />
                         <span className="d-block">Telegram</span>
                       </Link>
@@ -150,9 +156,9 @@ const Header = () => {
                     <div className="col-lg-4 col-md-4 col-4">
                       <Link className="dropdown-item text-center" to="#">
                         <img
-                          src="images/social/snapchat.png"
+                          src={snapchat}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Snapchat"
                         />
                         <span className="d-block">Snapchat</span>
                       </Link>
@@ -160,9 +166,9 @@ const Header = () => {
                     <div className="col-lg-4 col-md-4 col-4">
                       <Link className="dropdown-item text-center" to="#">
                         <img
-                          src="images/social/tiktok.png"
+                          src={tiktok}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Tiktok"
                         />
                         <span className="d-block">Tiktok</span>
                       </Link>
@@ -170,9 +176,9 @@ const Header = () => {
                     <div className="col-lg-4 col-md-4 col-4">
                       <Link className="dropdown-item text-center" to="#">
                         <img
-                          src="images/social/youtube.png"
+                          src={youtube}
                           className="profile-image img-fluid"
-                          alt=""
+                          alt="Youtube"
                         />
                         <span className="d-block">Youtube</span>
                       </Link>
@@ -190,18 +196,18 @@ const Header = () => {
                 aria-expanded="false"
               >
                 <img
-                  src="images/medium-shot-happy-man-smiling.jpg"
+                  src={profileImage}
                   className="profile-image img-fluid"
-                  alt=""
+                  alt="Profile"
                 />
               </Link>
               <ul className="dropdown-menu bg-white shadow">
                 <li>
                   <div className="dropdown-menu-profile-thumb d-flex">
                     <img
-                      src="images/medium-shot-happy-man-smiling.jpg"
+                      src={profileImage}
                       className="profile-image img-fluid me-3"
-                      alt=""
+                      alt="Profile"
                     />
                     <div className="d-flex flex-column">
                       <small>Thomas</small>
