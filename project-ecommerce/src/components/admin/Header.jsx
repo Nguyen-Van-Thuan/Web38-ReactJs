@@ -11,8 +11,6 @@ import youtube from "../../assets/images/social/youtube.png";
 import profileImage from "../../assets/images/medium-shot-happy-man-smiling.jpg";
 
 const Header = () => {
-
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -25,8 +23,8 @@ const Header = () => {
       {/* TOP BAR */}
       <header className="navbar sticky-top flex-md-nowrap">
         <div className="col-md-3 col-lg-3 me-0 px-3 fs-6">
-          <Link className="navbar-brand" to="/dashboad">
-            Trang quản trị
+          <Link className="navbar-brand" to="/">
+            Ecommer Project
           </Link>
         </div>
         <button
