@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Import các hình ảnh
 import google from "../../assets/images/social/search.png";
@@ -11,13 +11,22 @@ import youtube from "../../assets/images/social/youtube.png";
 import profileImage from "../../assets/images/medium-shot-happy-man-smiling.jpg";
 
 const Header = () => {
+
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <>
       {/* TOP BAR */}
       <header className="navbar sticky-top flex-md-nowrap">
         <div className="col-md-3 col-lg-3 me-0 px-3 fs-6">
           <Link className="navbar-brand" to="/dashboad">
-            Dashboad
+            Trang quản trị
           </Link>
         </div>
         <button
@@ -41,7 +50,7 @@ const Header = () => {
             className="form-control"
             name="search"
             type="text"
-            placeholder="Search"
+            placeholder="Tìm kiếm"
             aria-label="Search"
           />
         </form>
@@ -233,11 +242,12 @@ const Header = () => {
                     Help
                   </Link>
                 </li>
-                <li className="border-top mt-3 pt-2 mx-4">
-                  <Link className="dropdown-item ms-0 me-0" to="/">
-                    <i className="bi-box-arrow-left me-2" />
-                    Logout
-                  </Link>
+                <li
+                  className="border-top mt-3 pt-2 mx-4"
+                  onClick={handleLogout}
+                >
+                  <i className="bi-box-arrow-left me-2" />
+                  Logout
                 </li>
               </ul>
             </div>

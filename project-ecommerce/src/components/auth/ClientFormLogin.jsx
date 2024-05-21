@@ -6,12 +6,10 @@ import { useNavigate } from "react-router-dom";
 const ClientFormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
-
-  // useNavigate() chuyen huong toi router khac
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigate();
 
-  // Function handleSubmit su dung gui du lieu nguoi dung len api
   const handleSubmit = async (e) => {
     //B1: Bo load lai khi bam submit mac dinh cua browser
     e.preventDefault();
@@ -21,6 +19,7 @@ const ClientFormLogin = () => {
       email: email,
       password: password,
     };
+
     /* 
       B3: Xu dung axios gui thong tin nguoi dung den database, de login hay khong ?
       - Note: Su dung POST gui du lieu len database so sanh
@@ -28,13 +27,13 @@ const ClientFormLogin = () => {
     
     */
     try {
+      setLoading(true);
       const response = await axios.post(URL_LOGIN, infoUser);
-
-      //  console.log(response.data.user);
       let userDatabase = response.data.user;
 
       //B4:  Lu tru token cua user vao localStorage
       if (userDatabase) {
+        setLoading(false);
         localStorage.setItem("isAuth", JSON.stringify(userDatabase.token));
 
         // 4.1: Chuyen huong nguoi dung sang login
@@ -89,9 +88,16 @@ const ClientFormLogin = () => {
         </div>
         <div className="col-12">
           <div className="d-grid my-3">
-            <button className="btn btn-primary btn-lg" type="submit">
-              Log in
-            </button>
+
+
+            {loading === true ? (
+              <button disabled>Đang đăng nhâp...</button>
+            ) : (
+              <button className="btn btn-primary btn-lg" type="submit">
+                Log in
+              </button>
+            )}
+            
           </div>
         </div>
         <div className="col-12">
@@ -111,3 +117,5 @@ export default ClientFormLogin;
 
 // user dang nhap: test@test.com
 // pass: test
+
+// useNavigate() chuyen huong toi router khac

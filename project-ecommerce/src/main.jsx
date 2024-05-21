@@ -12,10 +12,13 @@ import "./assets/css/main.css"
 import "./assets/js/jquery.min.js"
 import "./assets/js/bootstrap.bundle.min.js"
 import "./assets/js/apexcharts.min.js"
-import "./assets/js/custom.js"
+// import "./assets/js/custom.js"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
 )
+
+
+// React minh khong su dung theo js thuan hoac jquery
