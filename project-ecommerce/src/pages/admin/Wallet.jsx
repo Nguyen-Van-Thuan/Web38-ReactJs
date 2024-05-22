@@ -1,7 +1,17 @@
 import React from "react";
 import Pagination from "../../components/admin/Pagination";
+import useAxios from "../../hooks/useAxios";
+import { URL_PRODUCT_LIST } from "../../components/Untils";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Wallet = () => {
+  // Get api product
+  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
+  // console.log(data);
+
+  if (isLoading === true) return <h4>Đang lấy dữ liệu...</h4>;
+
   return (
     <>
       <div className="title-group mb-3">
@@ -10,11 +20,17 @@ const Wallet = () => {
       <div className="row my-4">
         <div className="col-lg-12 col-12">
           <div className="custom-block bg-white">
-            <h5 className="mb-4">Thêm mới</h5>
+            <Link to="/dashboad/product/add-product">
+              <Button className="mb-4" variant="success">
+                Thêm mới
+              </Button>{" "}
+            </Link>
+
             <div className="table-responsive">
               <table className="account-table table">
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th scope="col">Tên</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Danh mục</th>
@@ -23,17 +39,36 @@ const Wallet = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td scope="row">Sản phẩm 1</td>
-                    <td scope="row">200.000 vnđ</td>
-                    <td scope="row">Quần áo</td>
-                    <td scope="row">
-                      <span className="badge text-bg-primary">Chỉnh sửa</span>
-                    </td>
-                    <td scope="row">
-                      <span className="badge text-bg-danger">Xoá sản phẩm</span>
-                    </td>
-                  </tr>
+                  {data.length <= 0 && (
+
+                    <tr>
+                      <td colSpan={5}>Chưa có sản phẩm nào.</td>
+                    </tr>
+                  )}
+                  {data.length > 0 &&
+                    data.map((value) => {
+                      // console.log(value);
+                      return (
+                        <tr key={value.id}>
+                          <td>{value.id}</td>
+                          <td scope="row">
+                            {value.title || "Không có dữ liệu"}
+                          </td>
+                          <td scope="row">
+                            {value.price|| "Không có dữ liệu"}
+                          </td>
+                          <td scope="row">
+                            {value.category || "Không có dữ liệu"}
+                          </td>
+                          <td scope="row">
+                          <Button variant="warning">Chỉnh sửa</Button>
+                          </td>
+                          <td scope="row">
+                          <Button variant="danger">Xoá SP</Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
               </table>
             </div>

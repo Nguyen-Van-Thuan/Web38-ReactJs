@@ -8,6 +8,9 @@ import "./assets/css/bootstrap-icons.css"
 import "./assets/css/apexcharts.css"
 import "./assets/css/main.css"
 
+// import css react bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import js dasbhoad
 import "./assets/js/jquery.min.js"
 import "./assets/js/bootstrap.bundle.min.js"

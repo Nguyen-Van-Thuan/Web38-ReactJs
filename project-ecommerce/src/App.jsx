@@ -12,6 +12,7 @@ import ClientLayout from "./pages/client/ClientLayout";
 import ClientDetailProduct from "./pages/client/ClientDetailProduct";
 import Login from "./pages/auth/Login";
 import ProtectedLogin from "./pages/auth/ProtectedLogin";
+import AddProuduct from "./pages/admin/AddProuduct";
 
 const App = () => {
   return (
@@ -31,6 +32,11 @@ const App = () => {
         >
           <Route index element={<Home />} />
           <Route path="/dashboad/wallet" element={<Wallet />} />
+          
+          <Route path="/dashboad/product/add-product" element={<AddProuduct/>}/>
+
+
+
           <Route path="/dashboad/profile" element={<Profile />} />
           <Route path="/dashboad/setting" element={<Setting />} />
           <Route path="/dashboad/help" element={<Help />} />
