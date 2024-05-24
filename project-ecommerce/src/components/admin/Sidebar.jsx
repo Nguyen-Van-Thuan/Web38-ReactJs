@@ -40,7 +40,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className={isActive("/dashboad/wallet")} to="/dashboad/wallet">
+            <Link className={isActive("/dashboad/product")} to="/dashboad/product">
               <i className="bi-house-fill me-2" />
               Sản phẩm
             </Link>

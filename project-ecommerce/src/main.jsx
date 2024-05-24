@@ -9,7 +9,7 @@ import "./assets/css/apexcharts.css"
 import "./assets/css/main.css"
 
 // import css react bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import js dasbhoad
 import "./assets/js/jquery.min.js"
