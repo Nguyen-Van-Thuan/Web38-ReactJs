@@ -1,16 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react";
-import Pagination from "../../components/admin/Pagination";
-import useAxios from "../../hooks/useAxios";
-import { URL_PRODUCT_LIST } from "../../components/Untils";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-
-const Wallet = () => {
-  // Get api product
-  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
-  // console.log(data);
-=======
 import axios from "axios";
 import React from "react";
 import { Button } from "react-bootstrap";
@@ -45,7 +32,6 @@ const Wallet = () => {
       console.log(error);
     }
   };
->>>>>>> Stashed changes
 
   if (isLoading === true) return <h4>Đang lấy dữ liệu...</h4>;
 
@@ -77,20 +63,12 @@ const Wallet = () => {
                 </thead>
                 <tbody>
                   {data.length <= 0 && (
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                     <tr>
                       <td colSpan={5}>Chưa có sản phẩm nào.</td>
                     </tr>
                   )}
                   {data.length > 0 &&
                     data.map((value) => {
-<<<<<<< Updated upstream
-                      // console.log(value);
-=======
->>>>>>> Stashed changes
                       return (
                         <tr key={value.id}>
                           <td>{value.id}</td>
@@ -98,16 +76,16 @@ const Wallet = () => {
                             {value.title || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
-                            {value.price|| "Không có dữ liệu"}
+                            {value.price || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
                             {value.category || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
-                          <Button variant="warning">Chỉnh sửa</Button>
+                            <Button variant="warning">Chỉnh sửa</Button>
                           </td>
                           <td scope="row">
-                          <Button variant="danger">Xoá SP</Button>
+                            <Button variant="danger">Xoá SP</Button>
                           </td>
                         </tr>
                       );
