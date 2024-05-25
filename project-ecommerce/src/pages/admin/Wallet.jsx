@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import Pagination from "../../components/admin/Pagination";
 import useAxios from "../../hooks/useAxios";
@@ -9,6 +10,42 @@ const Wallet = () => {
   // Get api product
   const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
   // console.log(data);
+=======
+import axios from "axios";
+import React from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { URL_PRODUCT_LIST } from "../../components/Untils";
+import Pagination from "../../components/admin/Pagination";
+import useGetAxiosPagi from "../../hooks/useGetAxiosPagi";
+
+const Wallet = () => {
+  const {
+    data,
+    isLoading,
+    getApi,
+    currentPage,
+    totalPages,
+    setCurrentPage,
+    setData,
+  } = useGetAxiosPagi(URL_PRODUCT_LIST);
+
+  // Xóa sản phẩm
+  const handleDelete = async (id) => {
+    const urlDelete = URL_PRODUCT_LIST + `/` + id;
+
+    try {
+      const response = await axios.delete(urlDelete);
+      if (response.status === 200 || response.status === 204) {
+        alert("xoa thanh cong!");
+        getApi();
+      }
+    } catch (error) {
+      alert("xoa that bai");
+      console.log(error);
+    }
+  };
+>>>>>>> Stashed changes
 
   if (isLoading === true) return <h4>Đang lấy dữ liệu...</h4>;
 
@@ -40,14 +77,20 @@ const Wallet = () => {
                 </thead>
                 <tbody>
                   {data.length <= 0 && (
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                     <tr>
                       <td colSpan={5}>Chưa có sản phẩm nào.</td>
                     </tr>
                   )}
                   {data.length > 0 &&
                     data.map((value) => {
+<<<<<<< Updated upstream
                       // console.log(value);
+=======
+>>>>>>> Stashed changes
                       return (
                         <tr key={value.id}>
                           <td>{value.id}</td>
@@ -82,3 +125,5 @@ const Wallet = () => {
 };
 
 export default Wallet;
+
+// Documentation Pagination: https://www.npmjs.com/package/json-server/v/0.17.4#paginate
