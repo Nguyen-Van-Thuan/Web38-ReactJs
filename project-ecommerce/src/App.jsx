@@ -13,6 +13,7 @@ import ClientDetailProduct from "./pages/client/ClientDetailProduct";
 import Login from "./pages/auth/Login";
 import ProtectedLogin from "./pages/auth/ProtectedLogin";
 import AddProuduct from "./pages/admin/AddProuduct";
+import EditProduct from "./pages/admin/EditProduct";
 
 const App = () => {
   return (
@@ -31,11 +32,10 @@ const App = () => {
           element={<ProtectedLogin element={<Layout />} />}
         >
           <Route index element={<Home />} />
-          <Route path="/dashboad/wallet" element={<Wallet />} />
-          
-          <Route path="/dashboad/product/add-product" element={<AddProuduct/>}/>
 
-
+          <Route path="/dashboad/product" element={<Wallet />} />
+          <Route path="/dashboad/product/add-product" element={<AddProuduct />} />
+          <Route path="/dashboad/product/edit/:id" element={<EditProduct />} />
 
           <Route path="/dashboad/profile" element={<Profile />} />
           <Route path="/dashboad/setting" element={<Setting />} />
@@ -49,7 +49,6 @@ const App = () => {
 };
 
 export default App;
-
 
 // ProtectedLogin -> lop tuong thanh -> bao ve dashboad
 // element={<Layout />} => props cua component ProtectedLogin, no dc san trong react

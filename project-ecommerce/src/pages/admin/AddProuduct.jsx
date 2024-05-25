@@ -4,10 +4,10 @@ import FormProject from "../../components/admin/FormProject";
 
 const AddProuduct = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col sx={12} sm={12} md={12}>
-          <h1 className="mb-4">Thêm mới sản phẩm</h1>
+          <h2 className="mb-4">Thêm mới sản phẩm</h2>
           <FormProject />
         </Col>
       </Row>

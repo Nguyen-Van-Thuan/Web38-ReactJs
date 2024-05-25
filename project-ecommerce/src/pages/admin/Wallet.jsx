@@ -64,7 +64,7 @@ const Wallet = () => {
                 <tbody>
                   {data.length <= 0 && (
                     <tr>
-                      <td colSpan={5}>Chưa có sản phẩm nào.</td>
+                      <td colSpan={6}>Chưa có sản phẩm nào.</td>
                     </tr>
                   )}
                   {data.length > 0 &&
@@ -82,10 +82,18 @@ const Wallet = () => {
                             {value.category || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
-                            <Button variant="warning">Chỉnh sửa</Button>
+                            <Link to={`/dashboad/product/edit/${value.id}`}>
+                              <Button variant="warning">Chỉnh sửa</Button>
+                            </Link>
                           </td>
+
                           <td scope="row">
-                            <Button variant="danger">Xoá SP</Button>
+                            <Button
+                              variant="danger"
+                              onClick={() => handleDelete(value.id)}
+                            >
+                              Xoá SP
+                            </Button>
                           </td>
                         </tr>
                       );
