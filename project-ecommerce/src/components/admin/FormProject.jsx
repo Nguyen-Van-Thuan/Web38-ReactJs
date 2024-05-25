@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { URL_PRODUCT_LIST } from "../Untils";
 import { Image } from "react-bootstrap";
 
-const FormProject = ({ detail = {}, urlEdit = `` }) => {
+const FormProject = ({ detail = null, urlEdit = null }) => {
   // console.log(detail);
   const detailTitle = detail ? detail.title : "";
   const detailCategory = detail ? detail.category : "";

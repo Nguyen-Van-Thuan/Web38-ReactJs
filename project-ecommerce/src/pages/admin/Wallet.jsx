@@ -68,7 +68,7 @@ const Wallet = () => {
                 <tbody>
                   {products.length <= 0 && (
                     <tr>
-                      <td colSpan={5}>Chưa có sản phẩm nào.</td>
+                      <td colSpan={6}>Chưa có sản phẩm nào.</td>
                     </tr>
                   )}
                   {products.length > 0 &&
