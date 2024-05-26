@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
-import Pagination from "../../components/admin/Pagination";
+import Pagination from "../../components/common/Pagination";
 import useGetAxiosPagi from "../../hooks/useGetAxiosPagi";
 
 const Wallet = () => {
