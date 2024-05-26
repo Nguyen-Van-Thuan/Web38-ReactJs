@@ -7,15 +7,8 @@ import Pagination from "../../components/admin/Pagination";
 import useGetAxiosPagi from "../../hooks/useGetAxiosPagi";
 
 const Wallet = () => {
-  const {
-    data,
-    isLoading,
-    getApi,
-    currentPage,
-    totalPages,
-    setCurrentPage,
-    setData,
-  } = useGetAxiosPagi(URL_PRODUCT_LIST);
+  const { data, isLoading, getApi, currentPage, totalPages, setCurrentPage } =
+    useGetAxiosPagi(URL_PRODUCT_LIST);
 
   // Xóa sản phẩm
   const handleDelete = async (id) => {
@@ -102,7 +95,11 @@ const Wallet = () => {
               </table>
             </div>
 
-            <Pagination />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </div>
       </div>

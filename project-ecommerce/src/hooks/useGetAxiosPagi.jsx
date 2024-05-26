@@ -7,11 +7,11 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(1);
 
-  const getApi = async () => {
+  const getApi = async (page = initialPage) => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `${url}?_page=${initialPage}&_limit=${itemsPerPage}`
+        `${url}?_page=${page}&_limit=${itemsPerPage}`
       );
       if (response.status === 200 || response.status === 204) {
         const totalItems = parseInt(response.headers["x-total-count"], 10);
@@ -28,7 +28,7 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
 
   // Call api
   useEffect(() => {
-    getApi();
+    getApi(currentPage);
   }, [url, currentPage, itemsPerPage]);
 
   return {
@@ -37,7 +37,6 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
     currentPage,
     totalPages,
     setCurrentPage,
-    setData,
     getApi,
   };
 };
