@@ -53,3 +53,7 @@ export default useGetAxiosPagi;
 // const [data, setData] = useState([]); -> State để lưu trữ dữ liệu từ API
 // const [currentPage, setCurrentPage] = useState(initialPage); -> State để theo dõi trang hiện tại
 // const [totalPages, setTotalPages] = useState(1); -> State để lưu trữ tổng số trang
+
+// status http request
+// 200 OK: Khi xóa thành công, máy chủ có thể trả về dữ liệu xác nhận rằng sản phẩm đã bị xóa, có thể kèm theo các thông tin bổ sung khác.
+// 204 No Content: Khi xóa thành công nhưng máy chủ không trả về bất kỳ dữ liệu nào trong phản hồi. Đây là cách thể hiện rằng yêu cầu đã được xử lý mà không cần gửi lại bất kỳ nội dung nào.

@@ -24,18 +24,22 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
         {/* Các số trang */}
         {pageNumbers.map((number) => (
-          <li key={number} className={`page-item ${number === currentPage ? "active" : ""}`}>
-            <button
-              className="page-link"
-              onClick={() => onPageChange(number)}
-            >
+          <li
+            key={number}
+            className={`page-item ${number === currentPage ? "active" : ""}`}
+          >
+            <button className="page-link" onClick={() => onPageChange(number)}>
               {number}
             </button>
           </li>
         ))}
 
         {/* Nút "Next" */}
-        <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+        <li
+          className={`page-item ${
+            currentPage === totalPages ? "disabled" : ""
+          }`}
+        >
           <button
             className="page-link"
             onClick={() => onPageChange(currentPage + 1)}
