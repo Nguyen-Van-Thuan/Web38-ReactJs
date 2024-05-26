@@ -14,9 +14,13 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
         `${url}?_page=${page}&_limit=${itemsPerPage}`
       );
       if (response.status === 200 || response.status === 204) {
+        // Lấy tổng số items từ header của phản hồi
         const totalItems = parseInt(response.headers["x-total-count"], 10);
+        // Tính tổng số trang dựa trên tổng số items và số items mỗi trang
         setTotalPages(Math.ceil(totalItems / itemsPerPage));
+        // Cập nhật dữ liệu vào state
         setData(response.data);
+        // Kết thúc tải dữ liệu
         setIsLoading(false);
       }
     } catch (error) {
@@ -32,17 +36,20 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
   }, [url, currentPage, itemsPerPage]);
 
   return {
-    data,
-    isLoading,
-    currentPage,
-    totalPages,
-    setCurrentPage,
-    getApi,
+    data, // Dữ liệu từ API
+    isLoading, // Trạng thái tải dữ liệu
+    currentPage, // Trang hiện tại
+    totalPages, // Tổng số trang
+    setCurrentPage, // Hàm thay đổi trang hiện tại
+    getApi, // Hàm để gọi API thủ công nếu cần
   };
 };
 
 export default useGetAxiosPagi;
 
-// initialPage là trang đầu tiên mà bạn muốn bắt đầu khi component được render lần đầu
-// itemsPerPage là số lượng sản phẩm được hiển thị trên mỗi trang
-// x-total-count
+// Note:
+
+// const [isLoading, setIsLoading] = useState(false); -> State để theo dõi trạng thái tải dữ liệu
+// const [data, setData] = useState([]); -> State để lưu trữ dữ liệu từ API
+// const [currentPage, setCurrentPage] = useState(initialPage); -> State để theo dõi trang hiện tại
+// const [totalPages, setTotalPages] = useState(1); -> State để lưu trữ tổng số trang
