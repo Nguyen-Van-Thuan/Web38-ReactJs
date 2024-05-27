@@ -1,14 +1,30 @@
+import axios from "axios";
 import React from "react";
-import Pagination from "../../components/admin/Pagination";
-import useAxios from "../../hooks/useAxios";
-import { URL_PRODUCT_LIST } from "../../components/Untils";
-import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { URL_PRODUCT_LIST } from "../../components/Untils";
+import Pagination from "../../components/common/Pagination";
+import useGetAxiosPagi from "../../hooks/useGetAxiosPagi";
 
 const Wallet = () => {
-  // Get api product
-  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
-  // console.log(data);
+  const { data, isLoading, getApi, currentPage, totalPages, setCurrentPage } =
+    useGetAxiosPagi(URL_PRODUCT_LIST);
+
+  // Xóa sản phẩm
+  const handleDelete = async (id) => {
+    const urlDelete = URL_PRODUCT_LIST + `/` + id;
+
+    try {
+      const response = await axios.delete(urlDelete);
+      if (response.status === 200 || response.status === 204) {
+        alert("xoa thanh cong!");
+        getApi();
+      }
+    } catch (error) {
+      alert("xoa that bai");
+      console.log(error);
+    }
+  };
 
   if (isLoading === true) return <h4>Đang lấy dữ liệu...</h4>;
 
@@ -40,14 +56,12 @@ const Wallet = () => {
                 </thead>
                 <tbody>
                   {data.length <= 0 && (
-
                     <tr>
-                      <td colSpan={5}>Chưa có sản phẩm nào.</td>
+                      <td colSpan={6}>Chưa có sản phẩm nào.</td>
                     </tr>
                   )}
                   {data.length > 0 &&
                     data.map((value) => {
-                      // console.log(value);
                       return (
                         <tr key={value.id}>
                           <td>{value.id}</td>
@@ -55,16 +69,24 @@ const Wallet = () => {
                             {value.title || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
-                            {value.price|| "Không có dữ liệu"}
+                            {value.price || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
                             {value.category || "Không có dữ liệu"}
                           </td>
                           <td scope="row">
-                          <Button variant="warning">Chỉnh sửa</Button>
+                            <Link to={`/dashboad/product/edit/${value.id}`}>
+                              <Button variant="warning">Chỉnh sửa</Button>
+                            </Link>
                           </td>
+
                           <td scope="row">
-                          <Button variant="danger">Xoá SP</Button>
+                            <Button
+                              variant="danger"
+                              onClick={() => handleDelete(value.id)}
+                            >
+                              Xoá SP
+                            </Button>
                           </td>
                         </tr>
                       );
@@ -73,7 +95,11 @@ const Wallet = () => {
               </table>
             </div>
 
-            <Pagination />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
         </div>
       </div>
@@ -82,3 +108,5 @@ const Wallet = () => {
 };
 
 export default Wallet;
+
+// Documentation Pagination: https://www.npmjs.com/package/json-server/v/0.17.4#paginate
