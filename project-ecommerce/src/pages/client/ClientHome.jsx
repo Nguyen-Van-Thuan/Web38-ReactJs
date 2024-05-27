@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
 import useAxios from "../../hooks/useAxios";
+import ClientCartPopup from "../../components/client/ClientCartPopup";
 
 const ClientHome = () => {
-
   // Opmail + su dung custom hook useAciox() -> call api
-  const {data, isLoading} = useAxios(URL_PRODUCT_LIST);
+  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   if (isLoading == true) return <h1>Dang lay du lieu ...</h1>;
 
@@ -32,7 +34,7 @@ const ClientHome = () => {
               data.map((value, index) => {
                 // console.log(value);
                 return (
-                  <div className="col mb-5" key={value.id} >
+                  <div className="col mb-5" key={value.id}>
                     <div className="card h-100">
                       <Link to={`/product/${value.id}`}>
                         {/* Product image*/}
@@ -55,9 +57,12 @@ const ClientHome = () => {
                       {/* Product actions*/}
                       <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div className="text-center">
-                          <a className="btn btn-outline-dark mt-auto" href="#">
+                          <button
+                            className="btn btn-outline-dark mt-auto"
+                            onClick={() => setModalShow(true)}
+                          >
                             Them gio hang
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -67,6 +72,8 @@ const ClientHome = () => {
           </div>
         </div>
       </section>
+      {/* popup cart */}
+      <ClientCartPopup show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

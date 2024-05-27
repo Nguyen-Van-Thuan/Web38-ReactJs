@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 const ClientCartPopup = (props) => {
   return (
@@ -124,7 +124,7 @@ const ClientCartPopup = (props) => {
                     <p>
                       <strong>Dự kiến giao hàng</strong>
                     </p>
-                    <p className="mb-0">12.10.2020 - 14.10.2020</p>
+                    <p className="mb-0">12/10/2024 - 14/10/2024</p>
                   </div>
                 </div>
                 <div className="card mb-4 mb-lg-0">
@@ -170,7 +170,7 @@ const ClientCartPopup = (props) => {
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
-                          <strong>Tổng cộng</strong>
+                          <strong>Tổng tiền</strong>
                           <strong>
                             <p className="mb-0">(Đã bao gồm VAT)</p>
                           </strong>
