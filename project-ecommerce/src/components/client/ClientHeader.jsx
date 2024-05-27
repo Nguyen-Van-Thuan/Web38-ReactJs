@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ClientCartButton from "./ClientCartButton";
 
 const ClientHeader = () => {
   return (
@@ -64,15 +65,9 @@ const ClientHeader = () => {
               </ul>
             </li>
           </ul>
-          <form className="d-flex">
-            <button className="btn btn-outline-dark" type="submit">
-              <i className="bi-cart-fill me-1" />
-              Cart
-              <span className="badge bg-dark text-white ms-1 rounded-pill">
-                0
-              </span>
-            </button>
-          </form>
+          <div className="d-flex">
+            <ClientCartButton />
+          </div>
           <Link to="/login" className="ms-4">
             <button type="button" className="btn btn-danger">
               Dashboad
