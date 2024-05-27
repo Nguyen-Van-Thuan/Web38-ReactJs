@@ -6,9 +6,8 @@ import ClientCartPopup from "../../components/client/ClientCartPopup";
 
 const ClientHome = () => {
   // Opmail + su dung custom hook useAciox() -> call api
-  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
-
   const [modalShow, setModalShow] = React.useState(false);
+  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
 
   if (isLoading == true) return <h1>Dang lay du lieu ...</h1>;
 
@@ -87,5 +86,4 @@ export default ClientHome;
   </a>
 
   => Loi
-
 */
