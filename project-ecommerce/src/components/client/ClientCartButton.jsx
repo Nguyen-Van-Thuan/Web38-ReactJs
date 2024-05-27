@@ -8,7 +8,6 @@ const ClientCartButton = () => {
     <>
       <button
         className="btn btn-outline-dark"
-        type="submit"
         onClick={() => setModalShow(true)}
       >
         <i className="bi-cart-fill me-1" />
@@ -23,3 +22,4 @@ const ClientCartButton = () => {
 export default ClientCartButton;
 
 // https://react-bootstrap.netlify.app/docs/components/modal
+// https://react-bootstrap.netlify.app/docs/components/modal#sizing-modals-using-custom-css
