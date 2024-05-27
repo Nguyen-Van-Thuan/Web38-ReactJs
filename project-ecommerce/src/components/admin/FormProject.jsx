@@ -5,40 +5,77 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { URL_PRODUCT_LIST } from "../Untils";
 import { useNavigate } from "react-router-dom";
+import { Image } from "react-bootstrap";
 
-const FormProject = () => {
+const FormProject = ({ dataEdit = null, URL_EDIT = null }) => {
+  const detailTitle = dataEdit ? dataEdit.title : "";
+  const detailCategory = dataEdit ? dataEdit.category : "";
+  const detailImage = dataEdit ? dataEdit.image : "";
+  const detailPrice = dataEdit ? dataEdit.price : "";
+  const detailContent = dataEdit ? dataEdit.content : "";
+
   // Khai bao react hook form
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    watch,
+  } = useForm({
+    defaultValues: {
+      title: detailTitle,
+      category: detailCategory,
+      image: detailImage,
+      price: detailPrice,
+      content: detailContent,
+    },
+  });
 
-  // onSubmit -> function xu ly logic sau khi nguoi dung bam submit
-  // data -> co san trong react hook form -> tao ra state tu dong luu thong tin user nhap sau khi khai bao voi register
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    // console.log(data);
+    // Chinh sua
+    if (dataEdit) {
+      try {
+        setIsLoading(true);
+        const response = await axios.put(URL_EDIT, data);
+        // console.log(response.status == 200 || response.status == 204);
 
-    // Logic them moi 1 san pham
-    try {
-      setIsLoading(true);
-      const response = await axios.post(
-        URL_PRODUCT_LIST, //api url
-        data //du lieu gui di
-      );
-      if (response) {
+        if (response.status == 200 || response.status == 204) {
+          navigate("/dashboad/product");
+          setIsLoading(false);
+        }
+      } catch (error) {
         setIsLoading(false);
-        // Chuyen huong ve trang listing
-        navigate("/dashboad/wallet");
+        alert("Cap nhat that bai");
+        console.log(error);
       }
-    } catch (error) {
-      alert("Them that bai");
-      console.log(error);
+    }
+
+    // Them moi
+    if (!dataEdit) {
+      try {
+        // Them moi SP
+        setIsLoading(true);
+        const response = await axios.post(
+          URL_PRODUCT_LIST, //api url
+          data //du lieu gui di
+        );
+        if (response.status == 200 || response.status == 204) {
+          setIsLoading(false);
+          // Chuyen huong ve trang listing
+          navigate("/dashboad/product");
+        }
+      } catch (error) {
+        alert("Them that bai");
+        console.log(error);
+      }
     }
   };
+
+  const btnProduct = dataEdit ? "Cập nhật" : "Thêm mới";
+  let dynamicImage = watch("image");
+  // console.log(dynamicImage);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -66,6 +103,14 @@ const FormProject = () => {
 
       <Form.Group className="mb-3">
         <Form.Label>Hình ảnh *: </Form.Label>
+        {dynamicImage && (
+          <Image
+            src={dynamicImage}
+            width={80}
+            rounded
+            className="mb-2 d-block"
+          />
+        )}
         <Form.Control
           type="text"
           placeholder="Nhập vào ảnh của bạn"
@@ -101,11 +146,11 @@ const FormProject = () => {
       </Form.Group>
       {isLoading === true ? (
         <Button variant="primary mb-4" type="submit" disabled>
-          Sản phẩm đang được thêm mới ...
+          Dang cap nhat...
         </Button>
       ) : (
         <Button variant="primary mb-4" type="submit">
-          Thêm sản phẩm
+          {btnProduct}
         </Button>
       )}
     </Form>
@@ -121,6 +166,8 @@ export default FormProject;
 // Voi cach binh thuong, khi lam viec form -> can luu lai gia tri cua user nhap vaof form -> co bao nhieu truong nhap lieu -> co bay nhieu state -> 100 truong nhap lieu -> ?
 // React hook form -> co che lu het truong nhap lieu vao object cho minh su dung.
 
+// onSubmit -> function xu ly logic sau khi nguoi dung bam submit
+// data -> co san trong react hook form -> tao ra state tu dong luu thong tin user nhap sau khi khai bao voi register
 // register -> khai cac truong du lieu trong from voi react hook form -> React hook form tu dong tao ra cac state tuong ung de luu tru gia tri nguoi dung nhap vao
 // handleSubmit -> Luc nguoi bam submit -> gui du lieu len server
 // watch -> kiem trang thai cua nguoi nhap -> onchange()
@@ -137,3 +184,9 @@ export default FormProject;
       "content": "Thong tin chi tiet san pham"
     }
 */
+
+
+
+// status http request
+// 200 OK: Khi câp nhat thành công, máy chủ có thể trả về dữ liệu xác nhận rằng sản phẩm đã cập nhật hoặc thêm mới, có thể kèm theo các thông tin bổ sung khác.
+// 204 No Content: Khi cap nhat thành công nhưng máy chủ không trả về bất kỳ dữ liệu nào trong phản hồi. Đây là cách thể hiện rằng yêu cầu đã được xử lý mà không cần gửi lại bất kỳ nội dung nào.
