@@ -14,7 +14,7 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
         `${url}?_page=${page}&_limit=${itemsPerPage}`
       );
       if (response.status === 200 || response.status === 204) {
-        const totalItems = parseInt(response.headers["x-total-count"], 10); //-> Lấy tổng số items từ header của phản hồi
+        const totalItems = parseInt(response.headers["x-total-count"]); //-> Lấy tổng số items từ header của phản hồi
 
         setTotalPages(Math.ceil(totalItems / itemsPerPage)); //-> Tính tổng số trang dựa trên tổng số items và số items mỗi trang
 
