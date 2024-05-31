@@ -4,13 +4,15 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { URL_PRODUCT_LIST } from "../../components/Untils";
 import Pagination from "../../components/admin/Pagination";
-import useAxios from "../../hooks/useAxios";
+import useGetAxiosPagination from "../../hooks/useGetAxiosPagination";
 
 const Wallet = () => {
-  // Get api product
-  const { data, isLoading, getApi } = useAxios(URL_PRODUCT_LIST);
-  let [isDelete, setIsDelete] = useState(false);
 
+  // Get api product
+  const { data, isLoading, getApi, totalPages, setCurrentPage, currentPage } = useGetAxiosPagination(URL_PRODUCT_LIST);
+
+  // Chuc nang xoa
+  let [isDelete, setIsDelete] = useState(false);
   const handleDelete = async (id) => {
     try {
       // Xac dinh url muon xoa
@@ -105,7 +107,7 @@ const Wallet = () => {
               </table>
             </div>
 
-            <Pagination />
+            <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
           </div>
         </div>
       </div>
@@ -114,3 +116,9 @@ const Wallet = () => {
 };
 
 export default Wallet;
+
+
+// Note: 
+// + setCurrentPage gia tri minh lay duoc tu trong hook useGetAxiosPagination de minh set lai so trang trong url de goi lai du lieu
+// + totalPages trong so luong trang trong phan trang lay duoc tu trong hook useGetAxiosPagination
+// + currentPage: Vi tri trang hien tai.
