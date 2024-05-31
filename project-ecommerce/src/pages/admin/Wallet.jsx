@@ -86,11 +86,8 @@ const Wallet = () => {
                           </td>
                           <td scope="row">
                             {isDelete == true ? (
-                              <Button
-                                variant="danger"
-                                disabled
-                              >
-                                Đang cập nhât
+                              <Button variant="danger" disabled>
+                                Xoá SP
                               </Button>
                             ) : (
                               <Button
