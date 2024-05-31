@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialPage); //-> State để theo dõi trang hiện tại
+  const [totalPages, setTotalPages] = useState(1); //-> State để lưu trữ tổng số trang
 
   const getApi = async (page = initialPage) => {
     try {
@@ -14,14 +14,13 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
         `${url}?_page=${page}&_limit=${itemsPerPage}`
       );
       if (response.status === 200 || response.status === 204) {
-        // Lấy tổng số items từ header của phản hồi
-        const totalItems = parseInt(response.headers["x-total-count"], 10);
-        // Tính tổng số trang dựa trên tổng số items và số items mỗi trang
-        setTotalPages(Math.ceil(totalItems / itemsPerPage));
-        // Cập nhật dữ liệu vào state
-        setData(response.data);
-        // Kết thúc tải dữ liệu
-        setIsLoading(false);
+        const totalItems = parseInt(response.headers["x-total-count"]); //-> Lấy tổng số items từ header của phản hồi
+
+        setTotalPages(Math.ceil(totalItems / itemsPerPage)); //-> Tính tổng số trang dựa trên tổng số items và số items mỗi trang
+
+        setData(response.data); // -> Cập nhật dữ liệu vào state
+
+        setIsLoading(false); // -> Kết thúc tải dữ liệu
       }
     } catch (error) {
       alert("Goi du lieu that bai!");
@@ -47,13 +46,6 @@ const useGetAxiosPagi = (url, initialPage = 1, itemsPerPage = 8) => {
 
 export default useGetAxiosPagi;
 
-// Note:
-
-// const [isLoading, setIsLoading] = useState(false); -> State để theo dõi trạng thái tải dữ liệu
-// const [data, setData] = useState([]); -> State để lưu trữ dữ liệu từ API
-// const [currentPage, setCurrentPage] = useState(initialPage); -> State để theo dõi trang hiện tại
-// const [totalPages, setTotalPages] = useState(1); -> State để lưu trữ tổng số trang
-
 // status http request
-// 200 OK: Khi xóa thành công, máy chủ có thể trả về dữ liệu xác nhận rằng sản phẩm đã bị xóa, có thể kèm theo các thông tin bổ sung khác.
-// 204 No Content: Khi xóa thành công nhưng máy chủ không trả về bất kỳ dữ liệu nào trong phản hồi. Đây là cách thể hiện rằng yêu cầu đã được xử lý mà không cần gửi lại bất kỳ nội dung nào.
+// 200 OK: Thành công, máy chủ có thể trả về dữ liệu xác nhận rằng sản phẩm đã bị xóa, có thể kèm theo các thông tin bổ sung khác.
+// 204 No Content:Thành công nhưng máy chủ không trả về bất kỳ dữ liệu nào trong phản hồi.
