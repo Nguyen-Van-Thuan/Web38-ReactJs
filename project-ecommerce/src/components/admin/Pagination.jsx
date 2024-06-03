@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   console.log(currentPage); //Vi tri trang hien tai
-  console.log(totalPages); //Tong so trang = 3
+  // console.log(totalPages); //Tong so trang = 3
 
   // Bien tong trang thanh 1 mang cac so [1,2,3]
   const pageNumbers = [];
@@ -11,13 +11,17 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers);
+  // console.log(pageNumbers);
 
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination justify-content-center mb-0">
         <li className="page-item">
-          <button className="page-link">
+          <button
+            className="page-link"
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
             <span aria-hidden="true">Prev</span>
           </button>
         </li>
@@ -28,13 +32,22 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
               className={`page-item ${value === currentPage ? "active" : ""}`}
               key={value}
             >
-              <button className="page-link">{value}</button>
+              <button
+                className="page-link"
+                onClick={() => setCurrentPage(value)}
+              >
+                {value}
+              </button>
             </li>
           );
         })}
 
         <li className="page-item">
-          <button className="page-link">
+          <button
+            className="page-link"
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
             <span aria-hidden="true">Next</span>
           </button>
         </li>

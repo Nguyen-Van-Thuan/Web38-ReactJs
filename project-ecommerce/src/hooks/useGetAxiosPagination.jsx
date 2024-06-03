@@ -30,7 +30,7 @@ const useGetAxiosPagination = (url, initialPage = 1, itemsPerPage = 5) => {
   // Call api
   useEffect(() => {
     getApi(currentPage);
-  }, [url], currentPage);
+  }, [url, currentPage]);
 
   return { data, isLoading, getApi, totalPages, setCurrentPage, currentPage };
 };

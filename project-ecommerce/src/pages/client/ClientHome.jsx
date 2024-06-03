@@ -4,27 +4,13 @@ import { URL_PRODUCT_LIST } from "../../components/Untils";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
+import ClientCartPoup from "../../components/client/ClientCartPoup";
 
 const ClientHome = () => {
-  // const [data, setData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // // Call api
-  // useEffect(() => {
-  //   const getApi = async () => {
-  //     const response = await axios.get(URL_PRODUCT_LIST);
-  //     // console.log(response);
-  //     setData(response.data);
-
-  //     // goi du lieu xong doi isLoading -> fasle
-  //     setIsLoading(false);
-  //   };
-  //   getApi();
-  // }, [URL_PRODUCT_LIST]);
-
+  const [modalShow, setModalShow] = React.useState(false);
 
   // Opmail + su dung custom hook useAciox() -> call api
-  const {data, isLoading} = useAxios(URL_PRODUCT_LIST);
+  const { data, isLoading } = useAxios(URL_PRODUCT_LIST);
 
   if (isLoading == true) return <h1>Dang lay du lieu ...</h1>;
 
@@ -50,7 +36,7 @@ const ClientHome = () => {
               data.map((value, index) => {
                 // console.log(value);
                 return (
-                  <div className="col mb-5" key={value.id} >
+                  <div className="col mb-5" key={value.id}>
                     <div className="card h-100">
                       <Link to={`/product/${value.id}`}>
                         {/* Product image*/}
@@ -73,9 +59,12 @@ const ClientHome = () => {
                       {/* Product actions*/}
                       <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div className="text-center">
-                          <a className="btn btn-outline-dark mt-auto" href="#">
+                          <button
+                            className="btn btn-outline-dark mt-auto"
+                            onClick={() => setModalShow(true)}
+                          >
                             Them gio hang
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -85,6 +74,9 @@ const ClientHome = () => {
           </div>
         </div>
       </section>
+
+      {/* Popup */}
+      <ClientCartPoup show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };
